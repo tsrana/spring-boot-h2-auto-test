@@ -62,8 +62,8 @@ public class Test_Sanity_FR {
 
 	@BeforeClass
 	public void beforeClass() {
-		//System.setProperty("webdriver.gecko.driver","geckodriver");
-		System.setProperty("webdriver.gecko.driver","geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver","geckodriver");
+		//System.setProperty("webdriver.gecko.driver","geckodriver.exe");
         FirefoxOptions opt = new FirefoxOptions();
         opt.setHeadless(true);
         driver = new FirefoxDriver(opt);
