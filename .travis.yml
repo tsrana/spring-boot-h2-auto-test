@@ -6,4 +6,5 @@ addons:
       
 script:
   - echo "new file" > new.txt
-  - mailx -a pom.xml -s "Subject" thecloudteacher@gmail.com < new.txt
+  - mailx -A pom.xml -s "Subject" thecloudteacher@gmail.com < new.txt
+  - mail -A pom.xml -s "Subject" thecloudteacher@gmail.com < new.txt
