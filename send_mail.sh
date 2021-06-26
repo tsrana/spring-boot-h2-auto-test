@@ -9,4 +9,4 @@ data1="'"$data"'"
 
 echo "data- $data1"
 
-curl --request POST --url https://api.sendgrid.com/v3/mail/send --header "authorization: Bearer $SENDGRID_API_KEY" --header 'Content-Type: application/json' --data "$data1"
+curl --request POST --url https://api.sendgrid.com/v3/mail/send --header "authorization: Bearer $SENDGRID_API_KEY" --header 'Content-Type: application/json' --data $data1
