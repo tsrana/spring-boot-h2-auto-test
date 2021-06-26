@@ -3,7 +3,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const fs = require("fs");
 
-pathToAttachment = "emailable-report.html";
+pathToAttachment = "/home/travis/build/tsrana/spring-boot-h2-auto-test/emailable-report.html";
 attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
 const msg = {
@@ -21,6 +21,11 @@ const msg = {
   ]
 };
 
-sgMail.send(msg).catch(err => {
-  console.log(err);
-});
+sgMail
+  .send(msg)
+  .then(() => {
+    console.log('Email sent')
+  })
+  .catch((error) => {
+    console.error(error)
+  });
