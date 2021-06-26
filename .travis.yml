@@ -1,2 +1,2 @@
 script: 
-  - sh send_mail.sh
+  - sh send_mail.sh $SENDGRID_API_KEY
