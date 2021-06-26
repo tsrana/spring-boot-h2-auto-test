@@ -1,7 +1,5 @@
       
 script:
   - echo "new file" > new.txt
-  - gem 'sendgrid-ruby'
-  - bundler
   - gem install sendgrid-ruby
   - ruby send_mail.rb
