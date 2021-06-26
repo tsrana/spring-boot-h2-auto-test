@@ -4,4 +4,4 @@ echo "key -- $SENDGRID_API_KEY"
 cnt=`base64 emailable-report.html`
 echo "cnt -- $cnt"
 
-curl --request POST --url https://api.sendgrid.com/v3/mail/send --header "authorization: Bearer $SENDGRID_API_KEY" --header 'Content-Type: application/json' --data '{"personalizations": [{"to": [{"email": "thecloudteacher@gmail.com"}]}],"from": {"email": "tsrana@gmail.com"},"subject":"Hello, World!","content": [{"type": "text/html","value": "Hey,<br>Please find attachment."}], "attachments": [{"content": "$cnt", "type": "text/html", "filename": "emailable-report.html"}]}'
+curl --request POST --url https://api.sendgrid.com/v3/mail/send --header "authorization: Bearer $SENDGRID_API_KEY" --header 'Content-Type: application/json' --data '{"personalizations": [{"to": [{"email": "thecloudteacher@gmail.com"}]}],"from": {"email": "tsrana@gmail.com"},"subject":"Hello, World!","content": [{"type": "text/html","value": "Hey,<br>Please find attachment."}], "attachments": [{"content": "`echo $cnt`", "type": "text/html", "filename": "emailable-report.html"}]}'
