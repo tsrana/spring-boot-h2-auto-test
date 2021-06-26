@@ -1,11 +1,11 @@
 javascript
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-const fs = require("fs");
+const fs = require("fs")
 
-pathToAttachment = "/home/travis/build/tsrana/spring-boot-h2-auto-test/emailable-report.html";
-attachment = fs.readFileSync(pathToAttachment).toString("base64");
+pathToAttachment = "/home/travis/build/tsrana/spring-boot-h2-auto-test/emailable-report.html"
+attachment = fs.readFileSync(pathToAttachment).toString("base64")
 
 const msg = {
   to: 'thecloudteacher@gmail.com',
@@ -20,7 +20,7 @@ const msg = {
       disposition: "attachment"
     }
   ]
-};
+}
 
 sgMail
   .send(msg)
@@ -29,4 +29,4 @@ sgMail
   })
   .catch((error) => {
     console.error(error)
-  });
+  })
