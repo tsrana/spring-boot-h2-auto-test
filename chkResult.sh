@@ -24,7 +24,7 @@ then
 	#zip -r surefire-reports.zip .
 	echo ""
 	echo ""
-	if ! (mail -a emailable-report.html -s "$subject" "$email_to" < body.txt)
+	if ! (mailx -a emailable-report.html -s "$subject" "$email_to" < body.txt)
 	then
 		echo >&2 "Sending Mail Failed"
 		exit 1

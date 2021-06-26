@@ -1,0 +1,9 @@
+addons:
+  apt:
+    packages:
+      - libxml2-utils  
+      - mailutils    
+      
+script:
+  - echo "new file" > new.txt
+  - mailx -a pom.xml -s "Subject" thecloudteacher@gmail.com < new.txt
