@@ -1,6 +1,2 @@
-language: node_js
-
 script: 
-  - npm install --save @sendgrid/mail
-  - pwd
-  - node send_mail.js
+  - sh send_mail.sh
