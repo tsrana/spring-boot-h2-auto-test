@@ -1,10 +1,7 @@
-addons:
-  apt:
-    packages:
-      - libxml2-utils  
-      - mailutils    
       
 script:
   - echo "new file" > new.txt
-  - mailx -A pom.xml -s "Subject" thecloudteacher@gmail.com < new.txt
-  - mail -A pom.xml -s "Subject" thecloudteacher@gmail.com < new.txt
+  - gem 'sendgrid-ruby'
+  - bundler
+  - gem install sendgrid-ruby
+  - ruby send_mail.rb
