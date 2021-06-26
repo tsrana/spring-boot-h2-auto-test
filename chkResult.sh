@@ -19,7 +19,7 @@ then
 		
 	email_to=thecloudteacher@gmail.com
 	subject="Test Result for H2 Build - `date`"
-	echo "Test Result --- skipped=$skipped failed=$failed total=$total passed=$passed  -- Please find the atteched TEST Results" > body.txt
+	echo "Test Result --- skipped=$skipped failed=$failed total=$total passed=$passed  -- Please find the atteched TEST Results" > target/surefire-reports/body.txt
 	cd target/surefire-reports
 	#zip -r surefire-reports.zip .
 	echo ""
