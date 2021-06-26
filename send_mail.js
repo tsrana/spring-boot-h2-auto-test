@@ -3,7 +3,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const fs = require("fs");
 
-pathToAttachment = `emailable-report.html`;
+pathToAttachment = "emailable-report.html";
 attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
 const msg = {
