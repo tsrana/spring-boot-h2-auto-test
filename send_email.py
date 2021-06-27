@@ -4,8 +4,8 @@ import base64
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, FileType, Disposition)
 
-print 'subject:', os.environ.get('subject')
-print 'body:', os.environ.get('body')
+print(os.environ.get('subject'))
+print(os.environ.get('body'))
 
 message = Mail(
     from_email='tsrana@gmail.com',
