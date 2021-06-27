@@ -21,7 +21,7 @@ then
 		
 	email_to=thecloudteacher@gmail.com
 	subject="Test Result for H2 Build - `date`"
-	body="<h1>Test Result --- </h1> <p style='color:DodgerBlue;font-size:50px>skipped=$skipped </p> <p style='color:Tomato;font-size:50px'>failed=$failed </p> <p style='color:MediumSeaGreen;font-size:50px'>passed=$passed </p> <p style='color:Gray;font-size:50px'>total=$total  </p> <br><br>-- Please find the atteched TEST Results" 
+	body="<h1>Test Result --- </h1> <p style='color:DodgerBlue;font-size:50px'>Skipped=$skipped </p> <p style='color:Tomato;font-size:50px'>Failed=$failed </p> <p style='color:MediumSeaGreen;font-size:50px'>Passed=$passed </p> <p style='color:Gray;font-size:50px'>Total=$total  </p> <br><br>-- Please find the atteched TEST Results" 
 	export subject
 	export body
 	cd target/surefire-reports
