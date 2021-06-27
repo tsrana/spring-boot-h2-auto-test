@@ -10,7 +10,7 @@ then
 		exit 1
 	fi	
 	
-	mv send_email.class target/surefire-reports
+	mv send_mail.class target/surefire-reports
 	mv sendgrid-java-latest.jar target/surefire-reports
 	mv commons-io-2.10.0.jar target/surefire-reports
 	
