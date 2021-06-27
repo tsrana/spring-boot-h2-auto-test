@@ -16,7 +16,7 @@
 	export subject
 	export body
 	echo ""
-	if ! (python send_email.py)
+	if ! (java -cp ".:sendgrid-java-latest.jar:commons-io-2.10.0.jar" send_mail)
 	then
 		echo >&2 "Sending Mail Failed"
 		exit 1
