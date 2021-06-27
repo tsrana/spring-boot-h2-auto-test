@@ -10,7 +10,9 @@ then
 		exit 1
 	fi	
 	
-	cp send_email.py target/surefire-reports
+	mv send_email.class target/surefire-reports
+	mv sendgrid-java-latest.jar target/surefire-reports
+	mv commons-io-2.10.0.jar target/surefire-reports
 	
 	skipped=$(xmllint --xpath 'string(//testng-results/@skipped)' target/surefire-reports/testng-results.xml)
 	failed=$(xmllint --xpath 'string(//testng-results/@failed)' target/surefire-reports/testng-results.xml)
@@ -21,13 +23,13 @@ then
 		
 	email_to=thecloudteacher@gmail.com
 	subject="Test Result for H2 Build - `date`"
-	body="<h1>Test Result --- </h1> <p style='color:DodgerBlue;font-size:50px'>Skipped=$skipped </p> <p style='color:Tomato;font-size:50px'>Failed=$failed </p> <p style='color:MediumSeaGreen;font-size:50px'>Passed=$passed </p> <p style='color:Gray;font-size:50px'>Total=$total  </p> <br><br>-- Please find the atteched TEST Results" 
+	body="<h1>Test Result --- </h1> <p style='color:DodgerBlue;font-size:30px'>Skipped=$skipped </p> <p style='color:Tomato;font-size:30px'>Failed=$failed </p> <p style='color:MediumSeaGreen;font-size:30px'>Passed=$passed </p> <p style='color:Gray;font-size:30px'>Total=$total  </p> <br><br>-- Please find the atteched TEST Results" 
 	export subject
 	export body
 	cd target/surefire-reports
 	echo ""
 	#if ! (mailx -a emailable-report.html -s "$subject" "$email_to" < body.txt)
-	if ! (python send_email.py)
+	if ! (java -cp ".:sendgrid-java-latest.jar:commons-io-2.10.0.jar" send_mail)
 	then
 		echo >&2 "Sending Mail Failed"
 		exit 1
