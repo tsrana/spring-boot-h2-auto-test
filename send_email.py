@@ -8,8 +8,8 @@ from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, File
 message = Mail(
     from_email='tsrana@gmail.com',
     to_emails='thecloudteacher@gmail.com',
-    subject='Sending with Twilio SendGrid is Fun',
-    html_content='<strong>and easy to do anywhere, even with Python</strong>'
+    subject=os.environ.get('subject'),
+    html_content=os.environ.get('body')
 )
 
 with open('emailable-report.html', 'rb') as f:

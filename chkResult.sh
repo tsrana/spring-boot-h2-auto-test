@@ -10,6 +10,8 @@ then
 		exit 1
 	fi	
 	
+	cp send_email.py target/surefire-reports
+	
 	skipped=$(xmllint --xpath 'string(//testng-results/@skipped)' target/surefire-reports/testng-results.xml)
 	failed=$(xmllint --xpath 'string(//testng-results/@failed)' target/surefire-reports/testng-results.xml)
 	total=$(xmllint --xpath 'string(//testng-results/@total)' target/surefire-reports/testng-results.xml)
@@ -19,12 +21,13 @@ then
 		
 	email_to=thecloudteacher@gmail.com
 	subject="Test Result for H2 Build - `date`"
-	echo "Test Result --- skipped=$skipped failed=$failed total=$total passed=$passed  -- Please find the atteched TEST Results" > target/surefire-reports/body.txt
+	body="<h1>Test Result --- </h1> <p style='color:DodgerBlue;font-size:50px>skipped=$skipped </p> <p style='color:Tomato;font-size:50px'>failed=$failed </p> <p style='color:MediumSeaGreen;font-size:50px'>passed=$passed </p> <p style='color:Gray;font-size:50px'>total=$total  </p> <br><br>-- Please find the atteched TEST Results" 
+	export subject
+	export body
 	cd target/surefire-reports
-	#zip -r surefire-reports.zip .
 	echo ""
-	echo ""
-	if ! (mailx -a emailable-report.html -s "$subject" "$email_to" < body.txt)
+	#if ! (mailx -a emailable-report.html -s "$subject" "$email_to" < body.txt)
+	if ! (python send_email.py)
 	then
 		echo >&2 "Sending Mail Failed"
 		exit 1
