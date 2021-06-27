@@ -1,1 +1,5 @@
 language: python
+
+script: 
+  - pip install sendgrid
+  - sh send_mail.sh

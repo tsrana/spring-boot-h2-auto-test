@@ -1,12 +1,34 @@
-echo "key -- $SENDGRID_API_KEY"
+#!/bin/bash
 
-#openssl base64 -in emailable-report.html -out emailable-report1.html
-cnt=`base64 emailable-report.html`
-echo "cnt -- $cnt"
+#set -x
 
-data='{"personalizations": [{"to": [{"email": "thecloudteacher@gmail.com"}]}],"from": {"email": "tsrana@gmail.com"},"subject":"Hello, World!","content": [{"type": "text/html","value": "Hey,<br>Please find attachment."}], "attachments": [{"content": "'$cnt'", "type": "text/plain", "filename": "emailable-report.html"}]}'
-data1="'"$data"'"
 
-echo "data- $data1"
+	skipped="3"
+	failed="6"
+	total="16"
+	passed="7"
+	
+	echo "Test Result --- skipped=$skipped failed=$failed total=$total passed=$passed"
+		
+	email_to=thecloudteacher@gmail.com
+	subject="Test Result for H2 Build - `date`"
+	body="<h1>Test Result --- </h1> <p style='color:DodgerBlue;font-size:50px>skipped=$skipped </p> <p style='color:Tomato;font-size:50px'>failed=$failed </p> <p style='color:MediumSeaGreen;font-size:50px'>passed=$passed </p> <p style='color:Gray;font-size:50px'>total=$total  </p> <br><br>-- Please find the atteched TEST Results" 
+	export subject
+	export body
+	echo ""
+	if ! (python send_email.py)
+	then
+		echo >&2 "Sending Mail Failed"
+		exit 1
+	fi
+	echo "Test Result sent to - $email_to"
+		
+	if [ $skipped -eq "0" -a $failed -eq "0" -a $total -eq $passed ]
+	then
+		echo "All test cases passed --- "
+		exit 0
+	fi
 
-curl --request POST --url https://api.sendgrid.com/v3/mail/send --header "authorization: Bearer $SENDGRID_API_KEY" --header 'Content-Type: application/json' --data '{"personalizations": [{"to": [{"email": "thecloudteacher@gmail.com"}]}],"from": {"email": "tsrana@gmail.com"},"subject":"Hello, World!","content": [{"type": "text/html","value": "Hey,<br>Please find attachment."}], "attachments": [{"content": "tsr", "type": "text/plain", "filename": "emailable-report.html"}]}'
+echo ""
+echo "Test FAILED -- contact admin"
+exit 1;
